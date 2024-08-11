@@ -69,12 +69,7 @@
           $this.parent("li").find("ul:visible").slideUp();
         } else {
           $this.parent("li").addClass("active");
-          $this
-            .closest("li")
-            .siblings("li")
-            .removeClass("active")
-            .find("li")
-            .removeClass("active");
+          $this.closest("li").siblings("li").removeClass("active").find("li").removeClass("active");
           $this.closest("li").siblings("li").find("ul:visible").slideUp();
           $this.siblings("ul").slideDown();
         }
@@ -176,7 +171,7 @@
     },
   });
 
-    /*-----------------------------------
+  /*-----------------------------------
   # Properties slider
   ------------------------------ */
 
@@ -190,7 +185,6 @@
       el: ".properties-slider .swiper-pagination",
       clickable: true,
     },
-
 
     navigation: false,
     breakpoints: {
@@ -350,55 +344,52 @@
   # latest prorperties slider
   ------------------------------ */
 
-  var latestProrpertiesSlider = new Swiper(
-    ".latest-prorperties-slider .swiper",
-    {
-      loop: true,
-      spaceBetween: 6,
-      speed: 600,
-      autoplay: {
-        delay: 5000,
-      },
-      lazy: true,
-      fadeEffect: {
-        crossFade: true,
-      },
-      pagination: false,
+  var latestProrpertiesSlider = new Swiper(".latest-prorperties-slider .swiper", {
+    loop: true,
+    spaceBetween: 6,
+    speed: 600,
+    autoplay: {
+      delay: 5000,
+    },
+    lazy: true,
+    fadeEffect: {
+      crossFade: true,
+    },
+    pagination: false,
 
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    breakpoints: {
+      // when window width is >= 320px
+      0: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 480px
+      576: {
+        slidesPerView: 1,
+      },
+      // when window width is >= 640px
+      768: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 2,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
+      1500: {
+        slidesPerView: 4,
       },
 
-      breakpoints: {
-        // when window width is >= 320px
-        0: {
-          slidesPerView: 1,
-        },
-        // when window width is >= 480px
-        576: {
-          slidesPerView: 1,
-        },
-        // when window width is >= 640px
-        768: {
-          slidesPerView: 2,
-        },
-        992: {
-          slidesPerView: 2,
-        },
-        1200: {
-          slidesPerView: 3,
-        },
-        1500: {
-          slidesPerView: 4,
-        },
-
-        1920: {
-          slidesPerView: 5,
-        },
+      1920: {
+        slidesPerView: 5,
       },
-    }
-  );
+    },
+  });
 
   /*-----------------------------------
   # latest prorperties slider
@@ -490,7 +481,7 @@
     if (x.matches) {
       // If media query matches
       var scene = document.querySelectorAll(".scene");
-      scene.forEach((el) => {
+      scene.forEach(el => {
         var parallaxInstance = new Parallax(el);
       });
     }
@@ -531,20 +522,18 @@
 
       elment.classList.toggle("active");
 
-      document
-        .querySelectorAll(".advanced-searrch-hidden")
-        .forEach(function (el) {
-          if (el.style.maxHeight) {
-            el.style.maxHeight = null;
-            el.classList.remove("active");
-          } else {
-            el.style.maxHeight = el.scrollHeight + "px";
+      document.querySelectorAll(".advanced-searrch-hidden").forEach(function (el) {
+        if (el.style.maxHeight) {
+          el.style.maxHeight = null;
+          el.classList.remove("active");
+        } else {
+          el.style.maxHeight = el.scrollHeight + "px";
 
-            setTimeout(function () {
-              el.classList.add("active");
-            }, 200);
-          }
-        });
+          setTimeout(function () {
+            el.classList.add("active");
+          }, 200);
+        }
+      });
     });
   });
 
@@ -613,9 +602,7 @@
           if (data.responseText !== "") {
             $(formMessages).text(data.responseText);
           } else {
-            $(formMessages).text(
-              "Oops! An error occured and your message could not be sent."
-            );
+            $(formMessages).text("Oops! An error occured and your message could not be sent.");
           }
         });
     });
@@ -668,13 +655,26 @@
       $(".tab-toggle-btn").addClass("active");
     }
 
-    document
-      .querySelectorAll(".advanced-searrch-hidden")
-      .forEach(function (el) {
-        if (el.style.maxHeight) {
-          el.style.maxHeight = null;
-          el.classList.remove("active");
-        }
-      });
+    document.querySelectorAll(".advanced-searrch-hidden").forEach(function (el) {
+      if (el.style.maxHeight) {
+        el.style.maxHeight = null;
+        el.classList.remove("active");
+      }
+    });
   });
 })(jQuery);
+
+/*---------------------------------
+        Download Brochure
+    -----------------------------------*/
+
+function downloadBrochure() {
+  var link = document.createElement("a");
+  link.href = "assets/images/properties-details/Green_Park_City.pdf";
+  link.download = "Green_Park_City_Brochure.pdf";
+  link.dispatchEvent(new MouseEvent("click"));
+}
+
+document.getElementById("download-brochure").addEventListener("click", downloadBrochure);
+
+
