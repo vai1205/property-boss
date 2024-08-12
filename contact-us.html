@@ -4,6 +4,33 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Property Boss Real Infrastructure LLP</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init({
+          publicKey: "t7vKGo7XLJqQLA-gJ",
+        });
+      })();
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          // these IDs from the previous steps
+          emailjs.sendForm("service_psuor3p", "template_v1uppkl", this).then(
+            () => {
+              console.log("SUCCESS!");
+              alert("Your message has been sent successfully. We will contact you soon.");
+              document.getElementById("contact-form").reset();
+            },
+            error => {
+              console.log("FAILED...", error);
+            }
+          );
+        });
+      };
+    </script>
     <meta name="AdsBot-Google" content="noindex follow" />
     <meta name="description" content="Property Boss Real Infrastructure LLP" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -184,7 +211,7 @@
 
       <div class="pt-[80px] lg:pt-[120px]">
         <div class="container">
-          <form id="contact-form" action="assets/php/contact.php" method="post">
+          <form id="contact-form">
             <div class="grid grid-cols-12 gap-x-[30px] mb-[-30px] items-end">
               <div class="col-span-12 lg:col-span-7 mb-[30px]">
                 <div>
@@ -197,7 +224,8 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="First Name"
-                      name="name"
+                      name="first_name"
+                      required
                     />
                   </div>
 
@@ -206,7 +234,7 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="Last Name"
-                      name="name"
+                      name="last_name"
                     />
                   </div>
 
@@ -215,7 +243,8 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="Phone number"
-                      name="number"
+                      name="phone"
+                      required
                     />
                   </div>
 
@@ -225,6 +254,7 @@
                       type="email"
                       placeholder="Email Address"
                       name="email"
+                      required
                     />
                   </div>
 

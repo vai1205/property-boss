@@ -4,6 +4,33 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Property Boss Real Infrastructure LLP</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init({
+          publicKey: "t7vKGo7XLJqQLA-gJ",
+        });
+      })();
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          // these IDs from the previous steps
+          emailjs.sendForm("service_psuor3p", "template_v1uppkl", this).then(
+            () => {
+              console.log("SUCCESS!");
+              alert("Your message has been sent successfully. We will contact you soon.");
+              document.getElementById("contact-form").reset();
+            },
+            error => {
+              console.log("FAILED...", error);
+            }
+          );
+        });
+      };
+    </script>
     <meta name="AdsBot-Google" content="noindex follow" />
     <meta name="description" content="Property Boss Real Infrastructure LLP" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -752,12 +779,14 @@
                   <div class="col-span-12 mb-[40px]">
                     <h2 class="font-lora text-primary text-[24px] sm:text-[28px] capitalize nt-[80px] font-medium">Leave a Message<span class="text-secondary">.</span></h2>
                     <div class="mt-[15px]">
-                      <form action="#" class="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
+                      <form id="contact-form" class="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
                         <div class="col-span-12 md:col-span-6">
                           <input
                             class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                             type="text"
                             placeholder="First Name"
+                            name="first_name"
+                            required
                           />
                         </div>
 
@@ -766,6 +795,8 @@
                             class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                             type="text"
                             placeholder="Last Name"
+                            name="last_name"
+                            
                           />
                         </div>
 
@@ -774,6 +805,8 @@
                             class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                             type="text"
                             placeholder="Phone number"
+                            name="phone"
+                            required
                           />
                         </div>
 
@@ -782,13 +815,15 @@
                             class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                             type="email"
                             placeholder="Email Address"
+                            name="email"
+                            required
                           />
                         </div>
 
                         <div class="col-span-12">
                           <textarea
                             class="h-[196px] font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] resize-none"
-                            name="textarea"
+                            name="message"
                             id="textarea"
                             cols="30"
                             rows="10"
@@ -819,6 +854,7 @@
                           href="#"
                           class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[30px] py-[15px] capitalize font-medium text-white block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all text-center"
                           id="download-brochure"
+                          onclick="downloadBrochure()"
                         >
                           Download Brochure
                         </a>
@@ -1080,7 +1116,15 @@
     </div>
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
-
+    <script>
+      function downloadBrochure() {
+        var link = document.createElement("a");
+        link.href = "assets/images/properties-details/Green_Park_City.pdf";
+        link.download = "Green_Park_City_Brochure.pdf";
+        link.dispatchEvent(new MouseEvent("click"));
+        alert("Brochure Downloaded Successfully");
+      }
+    </script>
     <!-- Vendors JS -->
     <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>

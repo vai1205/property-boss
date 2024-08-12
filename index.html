@@ -4,6 +4,33 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Property Boss Real Infrastructure LLP</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init({
+          publicKey: "t7vKGo7XLJqQLA-gJ",
+        });
+      })();
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          // these IDs from the previous steps
+          emailjs.sendForm("service_psuor3p", "template_v1uppkl", this).then(
+            () => {
+              console.log("SUCCESS!");
+              alert("Your message has been sent successfully. We will contact you soon.");
+              document.getElementById("contact-form").reset();
+            },
+            error => {
+              console.log("FAILED...", error);
+            }
+          );
+        });
+      };
+    </script>
     <meta name="AdsBot-Google" content="noindex follow" />
     <meta name="description" content="Property Boss Real Infrastructure LLP" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -1306,12 +1333,15 @@
               <p class="max-w-[460px]">Huge number of propreties availabe here for buy, sell and Rent. Also you find here co-living property, lots opportunity</p>
 
               <div class="mt-[50px]">
-                <form action="#" class="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
+                <form id="contact-form" class="grid grid-cols-12 gap-x-[20px] gap-y-[30px]">
                   <div class="col-span-12 md:col-span-6">
                     <input
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="First Name"
+                      id="first_name"
+                      name="first_name"
+                      required
                     />
                   </div>
 
@@ -1320,6 +1350,8 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="Last Name"
+                      id="last_name"
+                      name="last_name"
                     />
                   </div>
 
@@ -1328,6 +1360,9 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="text"
                       placeholder="Phone number"
+                      required
+                      id="phone"
+                      name="phone"
                     />
                   </div>
 
@@ -1336,17 +1371,20 @@
                       class="font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]"
                       type="email"
                       placeholder="Email Address"
+                      required
+                      id="email"
+                      name="email"
                     />
                   </div>
 
                   <div class="col-span-12">
                     <textarea
                       class="h-[196px] font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] resize-none"
-                      name="textarea"
-                      id="textarea"
                       cols="30"
                       rows="10"
                       placeholder="Message"
+                      id="message"
+                      name="message"
                     ></textarea>
                   </div>
 
@@ -1354,6 +1392,7 @@
                     <button
                       type="submit"
                       class="before:rounded-md before:block before:absolute before:left-auto before:right-0 before:inset-y-0 before:-z-[1] before:bg-secondary before:w-0 hover:before:w-full hover:before:left-0 hover:before:right-auto before:transition-all leading-none px-[30px] py-[15px] capitalize font-medium text-white block text-[14px] xl:text-[16px] relative after:block after:absolute after:inset-0 after:-z-[2] after:bg-primary after:rounded-md after:transition-all"
+                      id="submit"
                     >
                       Get a Call Back
                     </button>
@@ -1469,6 +1508,29 @@
     <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      function sendEmail(e) {
+        debugger;
+        e.preventDefault();
+        const name = document.getElementById("first_name").value + " " + document.getElementById("last_name").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const message = document.getElementById("message").value;
+
+        Email.send({
+          Host: "smtp.gmail.com",
+          Username: "propertyboss2013@gmail.com",
+          Password: "5CC2B133C1867197D8815EECB8FBA7D08A7C",
+          To: "propertyboss2013@gmail.com",
+          From: "propertyboss2013@gmail.com",
+          Subject: "New Message from Property Boss",
+          Body: "<h3>Name: " + name + "</h3><br/><h3>Email: " + email + "</h3><br/><h3>Phone Number: " + phone + "</h3><br/><h3>Message: " + message + "</h3>",
+        }).then(function (message) {
+          alert("mail sent successfully");
+        });
+      }
+    </script>
     <!-- Plugins JS -->
     <script src="assets/js/plugins/swiper-bundle.min.js"></script>
     <script src="assets/js/plugins/popper.min.js"></script>
