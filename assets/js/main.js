@@ -200,9 +200,9 @@
       768: {
         slidesPerView: 2,
       },
-      992: {
-        slidesPerView: 3,
-      },
+      // 992: {
+      //   slidesPerView: 3,
+      // },
     },
   });
 
